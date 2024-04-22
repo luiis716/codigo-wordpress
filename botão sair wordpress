@@ -1,0 +1,58 @@
+<?php
+/*   Botão de Logout com Redirect 
+[logout url='/pagina-que-deseja-redirecionar']
+Use o parametro url para informar o destino após o logout.
+Design by: Dante Testa
+*/
+
+
+function logout_by_dante_testa( $atts ) {	
+  $a = shortcode_atts( array('url' => '',  ), $atts);
+	$link = wp_logout_url($a["url"]);
+	$link = '<a href="'.$link.'" class="btn-logout">Sair [x]</a>';
+	if ( is_user_logged_in() ) {
+	return $link;
+	}else{ return; }
+}
+add_shortcode( 'logout', 'logout_by_dante_testa' );
+
+
+
+
+
+
+
+/*
+USER O CSS ABAIXO PARA ESTILIZAR O BOTÃO....
+Fique a vontade para criar seus estilos basta usar a class = [ a.btn-logout ]
+*/
+
+
+
+<style>
+:root {
+  --font-color: #EB55DE;
+  --bg-color: #000000;
+  --border-color: #EB55DE;
+  
+  --font-color-hover: #FF00BA;
+  --bg-color-hover: transparent;
+  --border-color-hover: #FF00BA;
+  
+  
+  --padding: 6px 12px;
+  --border-weight: 1px;
+  --border-radius: 4px;
+}
+a.btn-logout{
+    color: var(--font-color);
+    border:var(--border-weight) solid var(--border-color);
+    padding:var(--padding);
+    border-radius:var(--border-radius);
+    background: var(--bg-color);
+}
+a.btn-logout:hover{
+    color: var(--font-color-hover);
+    border:var(--border-weight) solid var(--border-color-hover);
+}
+</style>
